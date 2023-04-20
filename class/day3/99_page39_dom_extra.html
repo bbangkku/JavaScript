@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS DOM</title>
+</head>
+<style>
+  .red {
+    color: red;
+  }
+
+  .big {
+    font-size: 32px;
+  }
+</style>
+<body>
+  <h1>selector test</h1>
+
+  <button id="event-button">커져라!</button>
+
+  <ul id="list">
+    <li class="red">apple</li>
+    <li>orange</li>
+    <li id="banana">banana</li>
+    <li>grape</li>
+    <li class="red">strawberry</li>
+  </ul>
+
+  <script>
+    // strawberry 아래에 새로운 과일 하나를 더 추가하시오.
+    // 1. 추가할 과일 태그 만들기
+    const mango = document.createElement('li')
+    // 2. 텍스트 설정
+    mango.innerText = '망고'
+    // 3. 부모태그 선택,,(UL 태그 찾아와,,,)
+    const parent = document.querySelector('ul')
+    // 4. 부모에 추가해
+    parent.appendChild(mango)
+
+    // apple 위에 새로운 과일을 하나 더 추가하시오.
+    // 1. 추가할 과일 태그 만들기
+    const pineapple = document.createElement('li')
+    // 2. 텍스트 설정
+    pineapple.innerText = '파인애플'
+    // 3. prepend로 제일 위에 넣기,, 
+    parent.prepend(pineapple)
+
+    // orange 와 banana 사이에 새로운 과일을 하나 더 추가하시오.
+
+    // 1. 추가할 과일 태그 만들기
+    const kiwi = document.createElement('li')
+    // 2. 텍스트 설정
+    kiwi.innerText = '키위'
+    // 3. 바나나를 찾아와야함,,
+    const banana = document.querySelector('#banana')
+    // 4. 키위를 바나나 위에 넣겠다는 뜻
+    parent.insertBefore(kiwi,banana)
+
+    // class가 'red'인 노드 모두 삭제
+    // 1. class가 red인거 다갖고와 (.red) 클래스는 .
+    const reds = document.querySelectorAll('.red')
+    // 2. 보니까 li.red 2개있네,, 2개 각각 삭제하려면 뭐써야되는데,, > forEach
+    reds 
+    // 3. 각각 삭제
+    reds.forEach(element => {
+      element.remove()
+    });
+
+    // 모든 li 태그의 글자 크기를 키워보세요.
+    // 1. li 태그 다갖고와서
+    const liTags = document.querySelectorAll('li')
+    liTags
+    // 2. class에 big을 추가해줘
+    liTags.forEach(element => {
+      element.classList.add('big')
+    });
+
+    // 버튼을 누르면 이벤트 실행하기 (4일차 내용 맛보기)
+    
+    // 1. 버튼을 찾아와
+    const button = document.querySelector('#event-button') // id는 #쓰자
+
+    button.addEventListener('click', ()=>{
+      changeFont()
+    })
+    function changeFont() {
+      const LiTags = document.querySelector('li')
+      liTags.forEach(element => {
+        element.classList.add('big')        
+      });
+    }
+
+
+
+  </script>
+</body>
+</html>

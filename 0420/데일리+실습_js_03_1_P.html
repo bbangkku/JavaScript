@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+  <button class="btn btn-primary mt-2 ms-2">마우스를 올려보세요</button>
+  <button class="btn btn-primary mt-2 ms-2">이곳에도 마우스를 올려보세요</button>
+  <button id = 'btn-create-p' class="btn btn-primary mt-2 ms-2">클릭하면 p 태그 생성</button>
+<!-- ////////////////////////////////////////////////////////////// -->
+  <form id = 'myForm' action="">
+    <div>
+      <input type="text" id="myInput">
+      <input type="submit" value="Add">
+    </div>
+  </form>
+  <ul id="output-list"></ul>
+  <script>
+    // document : DOM에 접근하기 위한 최상위 객체
+    // 요소 선택자
+    // querySelector : 선택자로 요소를 선택
+    // 가장 먼저 조건에 만족하는 요소를 선택
+    const btn = document.querySelector('button')
+    
+    // 이벤트 : 버튼 클릭 등의 사용자 동작
+    // 이벤트 핸들러 : 사용자가 특정 동작을 하면
+    //                자동으로 등록된 함수를 실행
+    const myFunc1 = function(event){
+      alert('버튼이 클릭됨!')
+    }
+    btn.addEventListener('click',myFunc1)
+    
+    
+    
+    
+    // querySelectorAll: 조건에 만족하는 모든 요소
+    const btns = document.querySelectorAll('button')
+    console.log(Array.isArray(btns)) // 배열이아니다,, 유사배열객체
+
+    // 마우스를 올렸을 때(mouseover) 특정 함수 호출
+    for (let i = 0; i < btns.length ; i++){
+      btns[i].addEventListener('mouseover',(event) => {
+        console.log(btns[i].innerHTML)
+      })
+    }
+    // 마우스를 올렸을 때(mouseover) 특정 함수 호출 (같은말)
+    Array.from(btns).forEach((element) => {
+    element.addEventListener('mouseover',(event) => {
+        console.log(element.innerHTML)
+      })
+    })
+
+    // 요소를 선택하는 옛날 버전
+    // 여러가지 제약사항들이 존재한다
+    // 예시) my-button id 가 2개 이상이면 getElementById는 버그남
+    
+    // 두 코드는 동일한 기능
+    var btn2 = document.getElementById('my-button')
+    var btn2 = document.querySelector('#my-button') // 이건 요새쓰는거
+    // 두 코드는 동일한 기능
+    var btn3 = document.getElementsByClassName('btn')
+    var btn3 = document.querySelector('.btn')
+
+    // 요소 추가, 삭제해보기
+    const btnCreatePTag = document.querySelector('#btn-create-p')
+    btnCreatePTag.addEventListener('click', (event) => {
+      const pTag = document.createElement('p')
+      const p_delete = document.createElement('input')
+      pTag.textContent = '생성된 p 태그'
+      p_delete.type = 'submit'
+      p_delete.value = '삭제'
+      
+      // 삭제하는 이벤트
+      p_delete.addEventListener('click',(event) => {
+        pTag.remove()
+        p_delete.remove()
+
+
+
+      })
+      document.body.appendChild(pTag)
+      document.body.appendChild(p_delete)
+    })
+
+    // const btnDeletePtag = document.querySelector('#btn-delete-p')
+    // btnDeletePtag.addEventListener('click', (event) => {
+    //   const d_pTag = document.removeChild(btnDeletePtag)
+    //   d_pTag.textContent = '삭제'
+
+    // })
+    // class 조작하기
+
+    const myForm = document.querySelector('#myForm')
+    const myInput = document.querySelector('#myInput')
+    const outputList = document.querySelector('#output-list')
+    
+    myForm.addEventListener('submit',(event) => {
+      // 이벤트의 기본 동작을 막음
+      // form 태그는 기본적으로 action = "" (자기자신페이지로)
+      // 자기 자신 페이지를 다시 요청함(새로고침)
+
+      event.preventDefault() // 새로고침을 막음
+
+      // 사용자가 입력한 텍스트를 가져옴
+      // const inputElement = document.querySelector('#myInput')
+
+      // form 태그 안의 #myInput을 사용
+      // event.target : 이벤트가 발생하는 요소 정보를 담고있음
+      // [권장사항] 특정 이벤트 요소의 내부에 있는 요소를 선택할 때
+      const inputElement = event.target.querySelector('#myInput')
+      const inputValue = inputElement.value
+      if (inputValue=='') alert('값이 비어있다!')
+      else{
+        // ul 태그 자식으로 li 태그를 추가
+        const newElement = document.createElement('li')
+        newElement.textContent = inputValue
+        outputList.appendChild(newElement)
+        // 생성 후 input 영역이 빈 값으로 설정
+        inputElement.value =''
+        // console.log(inputValue) 
+      }
+        
+    })
+
+
+
+  </script>
+</body>
+</html>
