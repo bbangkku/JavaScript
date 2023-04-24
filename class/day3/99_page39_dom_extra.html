@@ -29,68 +29,56 @@
 
   <script>
     // strawberry 아래에 새로운 과일 하나를 더 추가하시오.
-    // 1. 추가할 과일 태그 만들기
-    const mango = document.createElement('li')
-    // 2. 텍스트 설정
-    mango.innerText = '망고'
-    // 3. 부모태그 선택,,(UL 태그 찾아와,,,)
-    const parent = document.querySelector('ul')
-    // 4. 부모에 추가해
-    parent.appendChild(mango)
 
-    // apple 위에 새로운 과일을 하나 더 추가하시오.
-    // 1. 추가할 과일 태그 만들기
-    const pineapple = document.createElement('li')
-    // 2. 텍스트 설정
+    // 추가할 과일 태그 만들기
+    const mango = document.createElement("li") 
+    mango.innerText = '망고' // 새로 만든 li 태그에 망고 텍스트 넣어주기
+
+    const parent = document.querySelector("ul") // ul 태그 찾아오기(appendChild 쓰려면 부모 태그 찾아야 하니까..)
+    parent.appendChild(mango) // 찾은 부모 태그에 appendchild 이용해서 태그 추가하기
+
+    // apple 위에 새로운 과일을 하나 더 추가 하시오.
+    const pineapple = document.createElement("li")
     pineapple.innerText = '파인애플'
-    // 3. prepend로 제일 위에 넣기,, 
+    
     parent.prepend(pineapple)
-
-    // orange 와 banana 사이에 새로운 과일을 하나 더 추가하시오.
-
-    // 1. 추가할 과일 태그 만들기
-    const kiwi = document.createElement('li')
-    // 2. 텍스트 설정
+    
+    // orange와 banana 사이에 새로운 과일을 하나 더 추가하시오.
+    const kiwi = document.createElement("li")
     kiwi.innerText = '키위'
-    // 3. 바나나를 찾아와야함,,
-    const banana = document.querySelector('#banana')
-    // 4. 키위를 바나나 위에 넣겠다는 뜻
-    parent.insertBefore(kiwi,banana)
+
+    const banana = document.querySelector("#banana")
+
+    parent.insertBefore(kiwi, banana)
 
     // class가 'red'인 노드 모두 삭제
-    // 1. class가 red인거 다갖고와 (.red) 클래스는 .
-    const reds = document.querySelectorAll('.red')
-    // 2. 보니까 li.red 2개있네,, 2개 각각 삭제하려면 뭐써야되는데,, > forEach
-    reds 
-    // 3. 각각 삭제
-    reds.forEach(element => {
-      element.remove()
-    });
+    // const reds = document.querySelectorAll('.red')
+
+    // reds.forEach(element => {
+    //   element.remove()
+    // });
 
     // 모든 li 태그의 글자 크기를 키워보세요.
-    // 1. li 태그 다갖고와서
-    const liTags = document.querySelectorAll('li')
-    liTags
-    // 2. class에 big을 추가해줘
-    liTags.forEach(element => {
-      element.classList.add('big')
-    });
+    // const liTags = document.querySelectorAll('li')
+
+    // liTags.forEach(element => {
+    //   element.classList.add('big')
+    // });
 
     // 버튼을 누르면 이벤트 실행하기 (4일차 내용 맛보기)
-    
-    // 1. 버튼을 찾아와
-    const button = document.querySelector('#event-button') // id는 #쓰자
+    const button = document.querySelector('#event-button')
 
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', () => {
       changeFont()
     })
-    function changeFont() {
-      const LiTags = document.querySelector('li')
-      liTags.forEach(element => {
-        element.classList.add('big')        
-      });
-    }
 
+    function changeFont() {
+      const LiTags = document.querySelectorAll('li')
+
+      LiTags.forEach(element => {
+        element.classList.add('big')
+      })
+    }
 
 
   </script>

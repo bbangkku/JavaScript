@@ -10,19 +10,21 @@
   <div></div>
   
   <script>
-  // 태그 생성
+    // 태그 생성
+    const h1Tag = document.createElement('h1')
+    const h2Tag = document.createElement('h1')
 
+    // 태그안에 컨텐츠를 작성하고
+    h1Tag.innerText = 'DOM 조작' 
 
-  // 태그안에 컨텐츠를 작성하고
+    // 부모 div 태그를 가져와서
+    const div = document.querySelector('div')
 
+    // div 태그의 자식 요소로 추가
+    div.appendChild(h1Tag)
 
-  // 부모 div 태그를 가져와서
-
-
-  // div 태그의 자식 요소로 추가
-
-
-  // div의 h1 요소 삭제
+    // div의 h1 요소 삭제
+    div.removeChild(h1Tag)
 
   </script>
 </body>
