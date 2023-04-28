@@ -1,7 +1,5 @@
 {% for article in articles %}
-  <form class="like-form">
-    {% csrf_token %}
-  </form>
+<form class="like-form" data-article-id="{{article.pk}}"></form>
 {% endfor %}
 
 
